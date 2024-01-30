@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Departamento {
+public class Departamento implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
