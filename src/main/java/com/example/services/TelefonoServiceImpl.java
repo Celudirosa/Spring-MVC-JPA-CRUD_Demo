@@ -2,12 +2,15 @@ package com.example.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.dao.EmpleadoDao;
 import com.example.dao.TelefonoDao;
 import com.example.entities.Telefono;
 
 import lombok.RequiredArgsConstructor;
 
+@Service
 @RequiredArgsConstructor
 public class TelefonoServiceImpl implements TelefonoService {
 
@@ -21,7 +24,7 @@ public class TelefonoServiceImpl implements TelefonoService {
 
     @Override
     public void eliminarTelefonos(int idEmpleado) {
-        telefonoDao.deletedByEmpleado(empleadoDao.findById(idEmpleado).get());
+        telefonoDao.deleteByEmpleado(empleadoDao.findById(idEmpleado).get());
     }
 
     @Override

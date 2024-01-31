@@ -12,6 +12,6 @@ import java.util.List;
 public interface TelefonoDao extends JpaRepository<Telefono, Integer> {
 
     List<Telefono> findByEmpleado(Empleado empleado);
-    void deletedByEmpleado(Empleado empleado);
+    void deleteByEmpleado(Empleado empleado);
 
 }

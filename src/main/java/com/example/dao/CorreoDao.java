@@ -13,6 +13,6 @@ import java.util.List;
 public interface CorreoDao extends JpaRepository<Correo, Integer> {
 
     List<Correo> findByEmpleado(Empleado empleado);
-    void deletedByEmpleado(Empleado empleado);
+    void deleteByEmpleado(Empleado empleado);
 
 }
