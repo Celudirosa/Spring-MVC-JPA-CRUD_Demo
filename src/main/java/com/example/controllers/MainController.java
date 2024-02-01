@@ -1,13 +1,10 @@
 package com.example.controllers;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.example.entities.Empleado;
 import com.example.services.EmpleadoService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,17 +16,22 @@ public class MainController {
 
     private final EmpleadoService empleadoService;
 
-    // antiguamente se hacia esto:
+    // // antiguamente se hacia esto:
+    // @GetMapping("/all")
+    // public ModelAndView dameEmpleados() {
+    //     ModelAndView modelo = new ModelAndView("views/listadoEmpleados");
+    //     List<Empleado> empleados = empleadoService.dameTodosLosEmpleados();
+    //     modelo.addObject("empleados", empleados);
+    //     return modelo;
+    // }
+
+    // acualmente:
     @GetMapping("/all")
-    public ModelAndView dameEmpleados() {
+    public String dameEmpleados(Model model) {
 
-        ModelAndView modelo = new ModelAndView("views/listadoEmpleados");
+        model.addAttribute("empleados", empleadoService.dameTodosLosEmpleados());
 
-        List<Empleado> empleados = empleadoService.dameTodosLosEmpleados();
-
-        modelo.addObject("empleados", empleados);
-
-        return modelo;
+        return "views/listadoEmpleados";
     }
 
 }
