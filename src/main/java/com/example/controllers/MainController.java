@@ -42,7 +42,7 @@ public class MainController {
     @GetMapping("/detalles")
     public String detallesEmpleado(@RequestParam(name = "id") int idEmpleado, Model model) {
 
-        LOG.info("ID Empleado REcibido " + idEmpleado);
+        LOG.info("ID Empleado Recibido " + idEmpleado);
         return "views/empleadoDetalles";
     }
 
