@@ -1,9 +1,12 @@
 package com.example.controllers;
 
+import java.util.logging.Logger;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.services.EmpleadoService;
 
@@ -15,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 
     private final EmpleadoService empleadoService;
+
+    private final Logger LOG = Logger.getLogger("MainController");
 
     // // antiguamente se hacia esto:
     // @GetMapping("/all")
@@ -35,8 +40,9 @@ public class MainController {
     }
 
     @GetMapping("/detalles")
-    public String detallesEmpleado(int idEmpleado, Model model) {
+    public String detallesEmpleado(@RequestParam(name = "id") int idEmpleado, Model model) {
 
+        LOG.info("ID Empleado REcibido " + idEmpleado);
         return "views/empleadoDetalles";
     }
 
