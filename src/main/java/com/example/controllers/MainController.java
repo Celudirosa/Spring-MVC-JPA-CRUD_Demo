@@ -34,4 +34,10 @@ public class MainController {
         return "views/listadoEmpleados";
     }
 
+    @GetMapping("/detalles")
+    public String detallesEmpleado(int idEmpleado, Model model) {
+
+        return "views/empleadoDetalles";
+    }
+
 }
