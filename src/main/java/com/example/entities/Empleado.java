@@ -17,8 +17,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // para que la clase se convierta en una entidad
 @Entity
@@ -26,6 +28,8 @@ import lombok.Data;
 @Table(name = "empleados")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 // cuando serializas algo, hay que convertir de objeto a flujo, hace falta un numero de version para que cuando
 // se haga el proceso contrario se pueda usar ese numero de serie
 public class Empleado implements Serializable {
@@ -48,7 +52,7 @@ public class Empleado implements Serializable {
     @Enumerated(EnumType.STRING) // con esto ya te saca el nombre
     private Genero genero;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Departamento departamento;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "empleado")
