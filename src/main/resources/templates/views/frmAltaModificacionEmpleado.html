@@ -10,30 +10,30 @@
 
         <fieldset>
             <legend>Formulario</legend>
-            <form>
+            <form th:object="${empleado}">
                 <div>
                     <label for="nombre">Nombre: </label>
-                    <input type="text" name="nombre" id="nombre">
+                    <input type="text" id="nombre" th:field="*{nombre}">
                 </div>
 
                 <div>
                     <label for="primerApellido">Primer Apellido: </label>
-                    <input type="text" name="primerApellido" id="primerApellido">
+                    <input type="text" id="primerApellido" th:field="*{primerApellido}">
                 </div>
 
                 <div>
                     <label for="segundoApellido">Segundo Apellido: </label>
-                    <input type="text" name="segundoApellido" id="segundoApellido">
+                    <input type="text" id="segundoApellido" th:field="*{segundoApellido}">
                 </div>
 
                 <div>
                     <label for="fechaAlta">Fecha de Alta: </label>
-                    <input type="date" name="fechaAlta" id="fechaAlta">
+                    <input type="date" id="fechaAlta" th:field="*{fechaAlta}">
                 </div>
 
                 <div>
                     <label for="salario">Salario: </label>
-                    <input type="text" name="salario" id="salario">
+                    <input type="text" id="salario" th:field="*{salario}">
                 </div>
                 
                 <!-- genero radio -->
@@ -55,20 +55,19 @@
                     </select>
                 </div>
 
-                <!-- telefonos -->
                 <div>
                     <label for="telefonos">Teléfonos: </label>
                     <input type="text" name="telefonos" id="telefonos"
                         placeholder="Separados por ;">
                 </div>
 
-                <!-- correos -->
                 <div>
                     <label for="correos">Correos: </label>
                     <input type="text" name="correos" id="correos"
                         placeholder="Separados por ;">
                 </div>
                 
+                <input type="submit" value="Alta/Modificacion">
             </form>
         </fieldset>
 

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.entities.Empleado;
+import com.example.services.DepartamentoService;
 import com.example.services.EmpleadoService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 
     private final EmpleadoService empleadoService;
+    private final DepartamentoService departamentoService;
 
     private final Logger LOG = Logger.getLogger("MainController");
 
@@ -65,7 +68,14 @@ public class MainController {
     @GetMapping("/frmAltaModificacion")
     public String formularioAltaModificacion(Model model) {
 
-   
+        // le paso al modelo un objeto empleado vacio
+        Empleado empleado = new Empleado();
+        
+        model.addAttribute("empleado", empleado);
+
+        // tambien los departamentos
+        model.addAttribute("departamentos", 
+            departamentoService.dameDepartamentos());
         
         return "views/frmAltaModificacionEmpleado";
     }
