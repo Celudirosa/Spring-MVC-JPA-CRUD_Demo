@@ -10,7 +10,7 @@
 
         <fieldset>
             <legend>Formulario</legend>
-            <form th:object="${empleado}">
+            <form th:object="${empleado}" th:action="@{/persistir}" method="post">
                 <div>
                     <label for="nombre">Nombre: </label>
                     <input type="text" id="nombre" th:field="*{nombre}">
@@ -40,30 +40,34 @@
                 <fieldset>
                     <legend>Género: </legend>
                         <label for="hombre">Hombre </label>
-                        <input type="radio" name="genero" id="hombre" value="HOMBRE">
+                        <input type="radio" name="genero" id="hombre" value="HOMBRE" th:field="*{genero}">
                         <label for="mujer">Mujer </label>
-                        <input type="radio" name="genero" id="mujer" value="MUJER">
+                        <input type="radio" name="genero" id="mujer" value="MUJER" th:field="*{genero}">
                         <label for="otro">Otro </label>
-                        <input type="radio" name="genero" id="otro" value="OTRO">
+                        <input type="radio" name="genero" id="otro" value="OTRO" th:field="*{genero}">
                 </fieldset>
 
                 <!-- departamentos desplegable -->
                 <div>
                     <label for="departamento">Departamentos: </label>
                     <select name="departamento" id="departamento">
-                        <option value=""></option>
+                        <option></option>
+                        <option th:each=" departamento : ${departamentos}"
+                            th:value="${departamento.id}"
+                            th:text="${departamento.nombre}">
+                        </option>
                     </select>
                 </div>
 
                 <div>
                     <label for="telefonos">Teléfonos: </label>
-                    <input type="text" name="telefonos" id="telefonos"
+                    <input type="text" name="numerosTel" id="telefonos"
                         placeholder="Separados por ;">
                 </div>
 
                 <div>
                     <label for="correos">Correos: </label>
-                    <input type="text" name="correos" id="correos"
+                    <input type="text" name="direccionesCorreo" id="correos"
                         placeholder="Separados por ;">
                 </div>
                 
