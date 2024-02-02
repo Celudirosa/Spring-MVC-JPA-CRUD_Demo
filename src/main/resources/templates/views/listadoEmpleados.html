@@ -28,9 +28,10 @@
                     <td th:text="${empleado.salario}"></td>
                     <td th:text="${empleado.genero}"></td>
                     <td>
-                        <a th:href="@{/detalles?id=}+${empleado.id}">
+                        <!-- <a th:href="@{/detalles?id=}+${empleado.id}">
                             Detalles
-                        </a>
+                        </a> -->
+                        <a th:href="@{/detalles/}+${empleado.id}">Detalles</a>
                     </td>
                 </tr>
             </tbody>
