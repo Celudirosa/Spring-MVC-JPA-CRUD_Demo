@@ -33,11 +33,21 @@ public class MainController {
     // acualmente:
     @GetMapping("/all")
     public String dameEmpleados(Model model) {
-
+        
         model.addAttribute("empleados", empleadoService.dameTodosLosEmpleados());
-
+        
         return "views/listadoEmpleados";
     }
+    
+    // cuando se recibe un parametro con la request:
+    // se utiliza tambien actualmente, pero menos que enviar una variable
+    // en la ruta
+    // @GetMapping("/detalles")
+    // public String detallesEmpleado(@RequestParam(name = "id") int idEmpleado, Model model) {
+
+    //     LOG.info("ID Empleado Recibido " + idEmpleado);
+    //     return "views/empleadoDetalles";
+    // }
 
     @GetMapping("/detalles")
     public String detallesEmpleado(@RequestParam(name = "id") int idEmpleado, Model model) {
