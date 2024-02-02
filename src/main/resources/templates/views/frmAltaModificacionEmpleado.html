@@ -1,11 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-</head>
-<body>
-    <h1>Formulario Alta/Modificacion de Empleado</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario</title>
+    </head>
+    <body>
+        <h1>Formulario Alta/Modificacion de Empleado</h1>
+
+        <fieldset>
+            <legend>Formulario</legend>
+            <form th:object="${empleado}" th:action="@{/persistir}" method="post">
+                <div>
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" id="nombre" th:field="*{nombre}">
+                </div>
+
+                <div>
+                    <label for="primerApellido">Primer Apellido: </label>
+                    <input type="text" id="primerApellido" th:field="*{primerApellido}">
+                </div>
+
+                <div>
+                    <label for="segundoApellido">Segundo Apellido: </label>
+                    <input type="text" id="segundoApellido" th:field="*{segundoApellido}">
+                </div>
+
+                <div>
+                    <label for="fechaAlta">Fecha de Alta: </label>
+                    <input type="date" id="fechaAlta" th:field="*{fechaAlta}">
+                </div>
+
+                <div>
+                    <label for="salario">Salario: </label>
+                    <input type="text" id="salario" th:field="*{salario}">
+                </div>
+                
+                <!-- genero radio -->
+                <fieldset>
+                    <legend>Género: </legend>
+                        <label for="hombre">Hombre </label>
+                        <input type="radio" name="genero" id="hombre" value="HOMBRE" th:field="*{genero}">
+                        <label for="mujer">Mujer </label>
+                        <input type="radio" name="genero" id="mujer" value="MUJER" th:field="*{genero}">
+                        <label for="otro">Otro </label>
+                        <input type="radio" name="genero" id="otro" value="OTRO" th:field="*{genero}">
+                </fieldset>
+
+                <!-- departamentos desplegable -->
+                <div>
+                    <label for="departamento">Departamentos: </label>
+                    <select name="departamento" id="departamento">
+                        <option></option>
+                        <option th:each=" departamento : ${departamentos}"
+                            th:value="${departamento.id}"
+                            th:text="${departamento.nombre}">
+                        </option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="telefonos">Teléfonos: </label>
+                    <input type="text" name="numerosTel" id="telefonos"
+                        placeholder="Separados por ;">
+                </div>
+
+                <div>
+                    <label for="correos">Correos: </label>
+                    <input type="text" name="direccionesCorreo" id="correos"
+                        placeholder="Separados por ;">
+                </div>
+                
+                <input type="submit" value="Alta/Modificacion">
+            </form>
+        </fieldset>
+
+    </body>
 </html>
