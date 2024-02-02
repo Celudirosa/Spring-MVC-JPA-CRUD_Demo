@@ -62,4 +62,12 @@ public class MainController {
         return "views/empleadoDetalles";
     }
 
+    @GetMapping("/frmAltaModificacion")
+    public String formularioAltaModificacion(Model model) {
+
+   
+        
+        return "views/frmAltaModificacionEmpleado";
+    }
+
 }
