@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,10 +50,15 @@ public class MainController {
     //     return "views/empleadoDetalles";
     // }
 
-    @GetMapping("/detalles")
-    public String detallesEmpleado(@RequestParam(name = "id") int idEmpleado, Model model) {
+    @GetMapping("/detalles/{id}")
+    public String detallesEmpleado(@PathVariable(name = "id") int idEmpleado, Model model) {
 
         LOG.info("ID Empleado Recibido " + idEmpleado);
+
+        model.addAttribute(
+            "empleado", 
+            empleadoService.dameUnEmpleado(idEmpleado));
+
         return "views/empleadoDetalles";
     }
 
