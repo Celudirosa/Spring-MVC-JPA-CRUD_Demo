@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -90,6 +91,7 @@ public class MainController {
     }
 
     @PostMapping("/persistir")
+    @Transactional
     public String persistirEmpleado(
             @ModelAttribute(name = "empleado") Empleado empleado,
             @RequestParam(name = "numerosTel", required = false) String telefonosRecibidos,
@@ -137,6 +139,7 @@ public class MainController {
     }
 
     @GetMapping("/actualizar/{id}")
+    @Transactional
     public String actualizarEmpleado(@PathVariable(name = "id", required = true) 
         int idEmpleado, Model model) {
 
@@ -170,8 +173,9 @@ public class MainController {
     }
 
     @GetMapping("/eliminar/{id}")
+    @Transactional
     public String eliminarEmpleado(@PathVariable(name = "id", required = true)
-        int idEmpleado, Model model) {
+        int idEmpleado) {
         
         empleadoService.eliminarEmpleado(idEmpleado);
 
