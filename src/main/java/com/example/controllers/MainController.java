@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entities.Correo;
+import com.example.entities.Departamento;
 import com.example.entities.Empleado;
 import com.example.entities.Telefono;
 import com.example.services.DepartamentoService;
@@ -132,6 +133,23 @@ public class MainController {
         empleadoService.persistirEmpleado(empleado);
 
         return "redirect:/all";
+    }
+
+    @GetMapping("/actualizar/{id}")
+    public String actualizarEmpleado(@PathVariable(name = "id", required = true) 
+        int idEmpleado, Model model) {
+
+        // recuperar el empleado por el id para cambiar solo ese empleado
+        Empleado empleado = empleadoService.dameUnEmpleado(idEmpleado);
+        // ya vienen los correos y telefonos porque es bidireccional, por el cascadeo
+
+        // recuperar los departamentos
+        List<Departamento> departamentos = departamentoService.dameDepartamentos();
+
+        // construir los numeros de telefono a partir de los telefonos recibidos conjuntamente con el empleado
+        
+
+        return "";
     }
 
 }
