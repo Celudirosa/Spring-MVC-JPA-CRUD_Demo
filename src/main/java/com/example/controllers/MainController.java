@@ -169,4 +169,13 @@ public class MainController {
         return "views/frmAltaModificacionEmpleado";
     }
 
+    @GetMapping("/eliminar/{id}")
+    public String eliminarEmpleado(@PathVariable(name = "id", required = true)
+        int idEmpleado, Model model) {
+        
+        empleadoService.eliminarEmpleado(idEmpleado);
+
+        return "redirect:/all";
+    }
+
 }
