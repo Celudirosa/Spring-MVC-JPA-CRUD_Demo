@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -142,12 +143,28 @@ public class MainController {
         // recuperar el empleado por el id para cambiar solo ese empleado
         Empleado empleado = empleadoService.dameUnEmpleado(idEmpleado);
         // ya vienen los correos y telefonos porque es bidireccional, por el cascadeo
+        model.addAttribute("empleado", empleado);
 
         // recuperar los departamentos
         List<Departamento> departamentos = departamentoService.dameDepartamentos();
+        model.addAttribute("departamentos", departamentos);
 
         // construir los numeros de telefono a partir de los telefonos recibidos conjuntamente con el empleado
-        
+        if (empleado.getTelefonos() != null) {
+            String numerosTelefono = empleado.getTelefonos().stream()
+                .map(Telefono::getTelefono)
+                .collect(Collectors.joining(";"));
+
+            model.addAttribute("numerosTelefono", numerosTelefono);
+        }
+        // construir los correos igual que los telefonos
+        if (empleado.getCorreos() != null) {
+            String direccionesCorreos = empleado.getCorreos().stream()
+                .map(Correo::getCorreo)
+                .collect(Collectors.joining(";"));
+
+            model.addAttribute("direccionesCorreos", direccionesCorreos);
+        }
 
         return "";
     }
