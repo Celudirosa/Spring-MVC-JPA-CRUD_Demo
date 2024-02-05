@@ -166,7 +166,7 @@ public class MainController {
             model.addAttribute("direccionesCorreos", direccionesCorreos);
         }
 
-        return "";
+        return "views/frmAltaModificacionEmpleado";
     }
 
 }

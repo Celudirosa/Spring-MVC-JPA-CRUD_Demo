@@ -11,6 +11,9 @@
         <fieldset>
             <legend>Formulario</legend>
             <form th:object="${empleado}" th:action="@{/persistir}" method="post">
+
+                <input type="hidden" th:field="*{id}">
+
                 <div>
                     <label for="nombre">Nombre: </label>
                     <input type="text" id="nombre" th:field="*{nombre}">
@@ -54,7 +57,8 @@
                         <option></option>
                         <option th:each=" departamento : ${departamentos}"
                             th:value="${departamento.id}"
-                            th:text="${departamento.nombre}">
+                            th:text="${departamento.nombre}"
+                            th:selected="${empleado.id != 0 and empleado.departamento.id == departamento.id}">
                         </option>
                     </select>
                 </div>
