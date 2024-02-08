@@ -52,7 +52,12 @@ public class Empleado implements Serializable {
     @Enumerated(EnumType.STRING) // con esto ya te saca el nombre
     private Genero genero;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    // nombre de la foto, porque el contenido se almacenara en el sistema de archivos
+    // (file system), en principio en la carpeta static directamente, o dentro de una
+    // carpeta que este en static
+    private String foto;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Departamento departamento;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "empleado")

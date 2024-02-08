@@ -10,7 +10,10 @@
 
         <fieldset>
             <legend>Formulario</legend>
-            <form th:object="${empleado}" th:action="@{/persistir}" method="post">
+            <form th:object="${empleado}" 
+                th:action="@{/persistir}" 
+                method="post" 
+                enctype="multipart/form-data">
 
                 <input type="hidden" th:field="*{id}">
 
@@ -76,7 +79,7 @@
                         placeholder="Separados por ;"
                         th:value="${direccionesCorreos}">
                 </div>
-                
+                <input type="file" name="file">
                 <input type="submit" value="Alta/Modificacion">
             </form>
         </fieldset>
