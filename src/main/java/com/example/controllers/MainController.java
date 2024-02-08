@@ -1,5 +1,8 @@
 package com.example.controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -100,6 +103,30 @@ public class MainController {
             @RequestParam(name = "file", required = false) MultipartFile imagen) {
 
         // comprobamos si hemos recibido un archivo de imagen
+        if (!imagen.isEmpty()) {
+            // vamos a trabajar todo el tiempo con NIO.2
+            // recuperar la ruta (Path) relativa de la carpeta donde
+            // quedara almacenado el archivo de imagen
+            Path imageFolder = Path.of("src/main/resources/static/images");
+
+            // creamos la ruta absoluta
+            Path rutaAbsoluta = imageFolder.toAbsolutePath();
+
+            // tambien necesitamos la ruta completa (rutaAbsoluta + nombre del archivo recibido)
+            Path rutaCompleta = Path.of(rutaAbsoluta + "/" + imagen.getOriginalFilename());
+
+            try {
+                byte[] byteImage = imagen.getBytes();
+                Files.write(rutaCompleta, byteImage);
+
+                // lo que resta es establecer la propiedad foto del empleado a el nombre original
+                // del archivo recibido
+                empleado.setFoto(imagen.getOriginalFilename());
+
+            } catch (IOException e) {
+
+            }
+        }
 
         // procesar los telefonos
         if (telefonosRecibidos != null) {

@@ -7,6 +7,7 @@
     </head>
     <body>
         <h1 th:text="'Detalles del empleado: ' + ${empleado.nombre}"></h1>
-        <img th:src="@{/images/hamster-ruso-fase-negro.webp}" alt="Hámster ruso negro monísimo">
+        <img th:src="@{/images/}+${empleado.foto}" 
+            alt="'Imagen del empleado ' + ${empleado.nombre}">
     </body>
 </html>
