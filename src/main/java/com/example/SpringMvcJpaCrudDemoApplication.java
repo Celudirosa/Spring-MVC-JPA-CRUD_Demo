@@ -2,6 +2,8 @@ package com.example;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,112 +38,117 @@ public class SpringMvcJpaCrudDemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		// creamos departamentos
-		Departamento dpto1 = Departamento.builder()
-		.nombre("RRHH")
-		.build();
+		Departamento dpt1 = Departamento.builder()
+				.nombre("RRHH")
+				.build();
 		
-		Departamento dpto2 = Departamento.builder()
-		.nombre("INFORMATICA")
-		.build();
-		
-		Departamento dpto3 = Departamento.builder()
-		.nombre("CONTABILIDAD")
-		.build();
+		Departamento dpt2 = Departamento.builder()
+				.nombre("INFORMATICA")
+				.build();
 
-		departamentoService.persistirDpto(dpto1);
-		departamentoService.persistirDpto(dpto2);
-		departamentoService.persistirDpto(dpto3);
+		Departamento dpt3 = Departamento.builder()
+				.nombre("CONTABILIDAD")
+				.build();
 
-		// ahora creamos los empleados
+		// departamentoService.persitirDpto(dpt1);		
+		// departamentoService.persitirDpto(dpt2);
+		// departamentoService.persitirDpto(dpt3);
+
+
+		// Empleados
+
 		Empleado emp1 = Empleado.builder()
-			.nombre("Celia")
-			.primerApellido("Luque")
-			.segundoApellido("Díaz")
-			.genero(Genero.MUJER)
-			.fechaAlta(LocalDate.of(2000, Month.DECEMBER, 23))
-			.salario(234567890)
-			.departamento(departamentoService.dameUnDepartamento(1))
+			.nombre("Aurora")
+			.primerApellido("Duque")
+			.fechaAlta(LocalDate.of(2000, Month.JANUARY, 12))
+			.salario(2500.50)
+			.departamento(dpt1)
+			.genero(Genero.OTRO)
 			.build();
 
 		Empleado emp2 = Empleado.builder()
-			.nombre("Isabel")
-			.primerApellido("Álvarez")
-			.segundoApellido("Díaz")
+			.nombre("Rosa Aurora")
+			.primerApellido("Duque")
+			.fechaAlta(LocalDate.of(2000, Month.JANUARY, 12))
+			.salario(2540.50)
+			.departamento(dpt2)
 			.genero(Genero.MUJER)
-			.fechaAlta(LocalDate.of(2000, Month.DECEMBER, 23))
-			.salario(234567890)
-			.departamento(departamentoService.dameUnDepartamento(2))
 			.build();
 
-		empleadoService.persistirEmpleado(emp1);
-		empleadoService.persistirEmpleado(emp2);
-
-		// creamos los telefonos
-		// telefonos empleado 1
-		// List<Telefono> telefonosEmpleado1 = new ArrayList<>();
+		// Telefonos 
+		
+		List<Telefono> telefonosEmpleado1 = new ArrayList<>(); 
 
 		Telefono telefono1Empleado1 = Telefono.builder()
-			.telefono("639147900")
-			.empleado(empleadoService.dameUnEmpleado(1))
+			.telefono("96123456")
+			.empleado(emp1)
 			.build();
 
 		Telefono telefono2Empleado1 = Telefono.builder()
-			.telefono("924678055")
-			.empleado(empleadoService.dameUnEmpleado(1))
+			.telefono("97123456") 
+			.empleado(emp1)
 			.build();
 
-		// telefonosEmpleado1.add(telefono1Empleado1);
-		// telefonosEmpleado1.add(telefono2Empleado1);
+		telefonosEmpleado1.add(telefono1Empleado1);
+		telefonosEmpleado1.add(telefono2Empleado1);	
 
-		// telefonos empleado 2
-		// List<Telefono> telefonosEmpleado2 = new ArrayList<>();
+		emp1.setTelefonos(telefonosEmpleado1);
+
+		List<Telefono> telefonosEmpleado2 = new ArrayList<>(); 
 
 		Telefono telefono1Empleado2 = Telefono.builder()
-			.telefono("639147900")
-			.empleado(empleadoService.dameUnEmpleado(2))
+			.telefono("98123456")
+			.empleado(emp2)
 			.build();
 
 		Telefono telefono2Empleado2 = Telefono.builder()
-			.telefono("924678055")
-			.empleado(empleadoService.dameUnEmpleado(2))
+			.telefono("99123456") 
+			.empleado(emp2)
 			.build();
 
-		// telefonosEmpleado2.add(telefono1Empleado2);
-		// telefonosEmpleado2.add(telefono2Empleado2);
-		
-		telefonoService.persistirTelefono(1, telefono1Empleado1);
-		telefonoService.persistirTelefono(1, telefono2Empleado1);
-		telefonoService.persistirTelefono(2, telefono1Empleado2);
-		telefonoService.persistirTelefono(2, telefono2Empleado2);
+		telefonosEmpleado2.add(telefono1Empleado2);
+		telefonosEmpleado2.add(telefono2Empleado2);
 
-		// creamos los correos
-		// correos empleado 1
-		// List<Correo> correosEmpleado1 = new ArrayList<>();
+		emp2.setTelefonos(telefonosEmpleado2);
+
+		// Correos 
+
+		List<Correo> correosEmpleado1 = new ArrayList<>();
 
 		Correo correo1Empleado1 = Correo.builder()
-			.correo("ujwjdijweil@krrliwreiwer.com")
+			.correo("aaaa@gmail.com")
+			.empleado(emp1)
 			.build();
 
 		Correo correo2Empleado1 = Correo.builder()
-			.correo("erasdc@casdecszdc.com")
+			.correo("bbbb@gmail.com")
+			.empleado(emp1)
 			.build();
 
-		// correosEmpleado1.add(correo1Empleado1);
-		// correosEmpleado1.add(correo2Empleado1);
+		correosEmpleado1.add(correo1Empleado1);
+		correosEmpleado1.add(correo2Empleado1);
 
-		// correos empleado 2
-		// List<Correo> correosEmpleado2 = new ArrayList<>();
+		emp1.setCorreos(correosEmpleado1);
+
+		List<Correo> correosEmpleado2 = new ArrayList<>();
 
 		Correo correo1Empleado2 = Correo.builder()
-			.correo("ujwjdijweil@krrliwreiwer.com")
+			.correo("ccccc@gmail.com")
+			.empleado(emp2)
 			.build();
 
-		// correosEmpleado2.add(correo1Empleado2);
+		Correo correo2Empleado2 = Correo.builder()
+			.correo("dddd@gmail.com")
+			.empleado(emp2)
+			.build();
 
-		correoService.persistirCorreo(1, correo1Empleado1);
-		correoService.persistirCorreo(1, correo2Empleado1);
-		correoService.persistirCorreo(2, correo1Empleado2);
+		correosEmpleado2.add(correo1Empleado2);
+		correosEmpleado2.add(correo2Empleado2);
 
+		emp2.setCorreos(correosEmpleado2);
+
+		empleadoService.persistirEmpleado(emp1);
+		empleadoService.persistirEmpleado(emp2);
 	}
 
 }
